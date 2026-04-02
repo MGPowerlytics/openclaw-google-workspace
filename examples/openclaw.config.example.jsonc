@@ -1,0 +1,77 @@
+// OpenClaw configuration example for @tensorfold/openclaw-google-workspace
+// Copy the relevant sections into your ~/.openclaw/openclaw.json
+
+{
+  "plugins": {
+    // Add the plugin to the allow list
+    "allow": ["openclaw-google-workspace", "telegram"],
+
+    "entries": {
+      "openclaw-google-workspace": {
+        "enabled": true,
+        "config": {
+          // Path to the Google OAuth Desktop Client credentials JSON
+          // Download from: Google Cloud Console > APIs & Services > Credentials
+          "credentialsPath": "./secrets/google-oauth.json",
+
+          // Where the plugin stores OAuth tokens (created automatically)
+          "tokenPath": "./secrets/google-tokens.json",
+
+          // Optional: override the OAuth redirect URI
+          // "oauthRedirectUri": "http://127.0.0.1:3000/oauth2callback",
+
+          "services": {
+            // --- Tier 1: Enabled by default ---
+
+            "gmail": {
+              "enabled": true,
+              // Set to true to prevent sending emails
+              "readOnly": false,
+              // Max results for search/list operations
+              "maxSearchResults": 20
+            },
+
+            "calendar": {
+              "enabled": true,
+              "readOnly": false,
+              // Which calendar to use by default
+              "defaultCalendarId": "primary",
+              // IANA timezone (e.g., "America/New_York", "Europe/London")
+              "defaultTimeZone": "America/New_York",
+              // How many days ahead to show for list_events
+              "upcomingWindowDays": 7
+            },
+
+            "drive": {
+              "enabled": true,
+              // Drive defaults to read-only for safety
+              "readOnly": true,
+              "maxSearchResults": 20
+            },
+
+            // --- Tier 2: Disabled by default ---
+
+            "contacts": {
+              "enabled": false,
+              "maxSearchResults": 10
+            },
+
+            "tasks": {
+              "enabled": false
+            },
+
+            "sheets": {
+              "enabled": false,
+              "readOnly": true
+            }
+          }
+        }
+      }
+    }
+  },
+
+  // Enable the plugin's tools
+  "tools": {
+    "allow": ["openclaw-google-workspace"]
+  }
+}

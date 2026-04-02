@@ -1,0 +1,53 @@
+{
+  "name": "@tensorfold/openclaw-google-workspace",
+  "version": "0.1.0",
+  "description": "All-in-one Google Workspace plugin for OpenClaw with shared OAuth. Supports Gmail, Calendar, Drive, Contacts, Tasks, and Sheets as toggleable services.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "author": "TensorFold",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tensorfold/openclaw-google-workspace.git"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "google",
+    "workspace",
+    "gmail",
+    "calendar",
+    "drive",
+    "contacts",
+    "tasks",
+    "sheets"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "files": [
+    "src",
+    "skills",
+    "docs",
+    "examples",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "openclaw": ">=2026.1.0"
+  },
+  "dependencies": {
+    "googleapis": "^171.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

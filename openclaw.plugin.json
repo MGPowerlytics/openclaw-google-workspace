@@ -1,0 +1,100 @@
+{
+  "id": "openclaw-google-workspace",
+  "name": "OpenClaw Google Workspace",
+  "description": "All-in-one Google Workspace integration with shared OAuth. Gmail, Calendar, Drive, Contacts, Tasks, Sheets.",
+  "version": "0.1.0",
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "credentialsPath": {
+        "type": "string",
+        "minLength": 1
+      },
+      "tokenPath": {
+        "type": "string",
+        "minLength": 1
+      },
+      "oauthRedirectUri": {
+        "type": "string",
+        "minLength": 1
+      },
+      "services": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "gmail": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean", "default": true },
+              "readOnly": { "type": "boolean", "default": false },
+              "maxSearchResults": { "type": "integer", "minimum": 1, "maximum": 100, "default": 20 }
+            }
+          },
+          "calendar": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean", "default": true },
+              "readOnly": { "type": "boolean", "default": false },
+              "defaultCalendarId": { "type": "string", "default": "primary" },
+              "defaultTimeZone": { "type": "string" },
+              "upcomingWindowDays": { "type": "integer", "minimum": 1, "default": 7 }
+            }
+          },
+          "drive": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean", "default": true },
+              "readOnly": { "type": "boolean", "default": true },
+              "maxSearchResults": { "type": "integer", "minimum": 1, "maximum": 100, "default": 20 }
+            }
+          },
+          "contacts": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean", "default": false },
+              "maxSearchResults": { "type": "integer", "minimum": 1, "maximum": 50, "default": 10 }
+            }
+          },
+          "tasks": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean", "default": false }
+            }
+          },
+          "sheets": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": { "type": "boolean", "default": false },
+              "readOnly": { "type": "boolean", "default": true }
+            }
+          }
+        }
+      }
+    }
+  },
+  "uiHints": {
+    "credentialsPath": {
+      "label": "OAuth Client Credentials File",
+      "placeholder": "./secrets/google-oauth.json",
+      "help": "Path to the Google Cloud OAuth Desktop Client JSON file."
+    },
+    "tokenPath": {
+      "label": "Token Storage File",
+      "placeholder": "./secrets/google-tokens.json",
+      "help": "Path where the plugin stores and reads OAuth tokens."
+    },
+    "oauthRedirectUri": {
+      "label": "OAuth Redirect URI",
+      "placeholder": "http://127.0.0.1:3000/oauth2callback",
+      "help": "Override redirect URI. Defaults to first URI from credentials file."
+    }
+  }
+}
